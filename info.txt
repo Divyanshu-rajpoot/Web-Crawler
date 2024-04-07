@@ -1,0 +1,2 @@
+someinfo regarding http ex: - 'https://divyanshu.com' -> divyanshu.com
+                             "http://divyanshu.com"  -> divyanshu.com

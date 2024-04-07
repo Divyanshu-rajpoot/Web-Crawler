@@ -36,8 +36,6 @@ async function crawlPage( baseURL , currentURL , pages) { // crawling the page
         for(const nexturl of nextUrls){
             pages = await crawlPage(baseURL , nexturl , pages) //recursively search all the pages for links
         }
-        
-
 
     } catch (error) {
         console.log(`error in fetch: ${error.message} , on page : ${currentURL}`);
@@ -78,7 +76,7 @@ function getUrlFormHtml(htmlBody , baseUrl) {
 function normalizeUrl(Urlstring) {
     const urlobject = new URL(Urlstring);
     
-    const hostpath =  `${urlobject.hostname}${urlobject.pathname}`;
+    const hostpath = `${urlobject.hostname}${urlobject.pathname}`;
     if (hostpath.length > 0 && hostpath.slice(-1) === '/') {
         return hostpath.slice(0,-1); // this will givce everything except the last character
     }

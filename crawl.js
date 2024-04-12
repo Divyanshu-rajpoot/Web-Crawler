@@ -40,8 +40,7 @@ async function crawlPage( baseURL , currentURL , pages) { // crawling the page
     } catch (error) {
         console.log(`error in fetch: ${error.message} , on page : ${currentURL}`);
     }
-    return pages;
-    
+    return pages;   
 }
 
 function getUrlFormHtml(htmlBody , baseUrl) {

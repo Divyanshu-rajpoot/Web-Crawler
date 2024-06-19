@@ -1,13 +1,13 @@
 const { JSDOM } = require('jsdom');
 
 async function crawlPage( baseURL , currentURL , pages) { // crawling the page
-    const baseURLobj = new URL(baseURL);
+    const baseURLobj = new URL(baseURL);//create a new url object
     const currentURLobj = new URL(currentURL);
     if(baseURLobj.hostname !== currentURLobj.hostname){ // check if we are on the same page or not
-        return pages
+        return pages;
     }
 
-    const normalizedcurrenturl = normalizeUrl(currentURL);
+    const normalizedcurrenturl = normalizeUrl(currentURL); // we have to normalize the url for better url 
     if (pages[normalizedcurrenturl] > 0) {
         pages[normalizedcurrenturl]++;
         return pages
@@ -15,12 +15,12 @@ async function crawlPage( baseURL , currentURL , pages) { // crawling the page
 
     pages[normalizedcurrenturl] = 1;
 
-    console.log(`actively crawling: ${currentURL}`);
+    console.log(`actively crawling: ${currentURL}`); // this will display the message
 
     try {
-        const resp = await fetch(currentURL);
+        const resp = await fetch(currentURL); //fetching the page
 
-        if (resp.status > 399) {
+        if (resp.status > 399) { //if status is greater than 400 some error
             console.log(`error in fetch with status code ${resp.status} on page ${currentURL}`);
             return pages;
         }
@@ -74,10 +74,9 @@ function getUrlFormHtml(htmlBody , baseUrl) {
 
 function normalizeUrl(Urlstring) {
     const urlobject = new URL(Urlstring);
-    
     const hostpath = `${urlobject.hostname}${urlobject.pathname}`;
     if (hostpath.length > 0 && hostpath.slice(-1) === '/') {
-        return hostpath.slice(0,-1); // this will givce everything except the last character
+        return hostpath.slice(0,-1); // this will give everything except the last character
     }
     return hostpath
 } 

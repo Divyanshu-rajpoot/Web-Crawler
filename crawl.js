@@ -30,13 +30,11 @@ async function crawlPage( baseURL , currentURL , pages) { // crawling the page
             return pages;
         }
         const htmlbody = await resp.text();
-
         const nextUrls = getUrlFormHtml(htmlbody , baseURL);
 
         for(const nexturl of nextUrls){
             pages = await crawlPage(baseURL , nexturl , pages) //recursively search all the pages for links
         }
-
     } catch (error) {
         console.log(`error in fetch: ${error.message} , on page : ${currentURL}`);
     }
